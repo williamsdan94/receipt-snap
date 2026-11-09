@@ -1,0 +1,4 @@
+Bundled so the app never contacts a CDN.
+- tesseract.min.js, worker.min.js: tesseract.js 5.1.1 (Apache-2.0)
+- tesseract-core-simd-lstm.wasm.js, tesseract-core-lstm.wasm.js: tesseract.js-core 5.1.1 (Apache-2.0); the lstm one is the fallback for phones without SIMD
+- eng.traineddata.gz: @tesseract.js-data/eng 1.0.0, 4.0.0_best_int (Apache-2.0, from tesseract-ocr/tessdata)
