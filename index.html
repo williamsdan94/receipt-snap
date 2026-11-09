@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- Makes the page fit phone screens and use the full iPhone screen. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- Safety lock: the page may only load files from this same site (no outside requests). -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; img-src 'self' blob: data:; worker-src 'self' blob:; connect-src 'self' blob: data:; style-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Receipts">
+  <title>Receipt Snap</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="icon-192.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- The whole app is drawn inside this box by app.js. -->
+  <main id="app"><p class="loading">Loading…</p></main>
+
+  <!-- Hidden camera picker. "capture" opens the back camera straight away on iPhone. -->
+  <input id="photo-input" type="file" accept="image/*" capture="environment" hidden>
+
+  <!-- Full-size photo viewer, opened by tapping a thumbnail. -->
+  <div id="viewer" class="viewer" hidden>
+    <button type="button" class="viewer-close" data-action="close-viewer">Close</button>
+    <img id="viewer-img" alt="Receipt photo, full size">
+  </div>
+
+  <!-- Order matters: the reader library, then the receipt parser, then the app. -->
+  <script src="vendor/tesseract.min.js"></script>
+  <script src="parse.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

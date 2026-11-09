@@ -1,0 +1,117 @@
+/* Receipt Snap styles.
+   From the App Designer's spec: white background, navy buttons, the Quick Pot & Fry
+   amber for "Check this", charcoal text. Text 16px or bigger, tap targets 44px or bigger.
+   System fonts only (nothing is downloaded). */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: #FFFFFF;
+  color: #2B2B2B;
+  font-family: -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  /* Keep content clear of the iPhone notch and home bar in home-screen mode. */
+  padding-top: env(safe-area-inset-top);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid #1F3A5F; outline-offset: 2px; }
+[hidden] { display: none !important; }
+#app { max-width: 640px; margin: 0 auto; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
+.loading { padding: 40px 20px; font-size: 17px; }
+
+/* ---- Top bar ---- */
+.topbar { display: flex; align-items: center; gap: 8px; padding: 12px 16px 6px; min-height: 60px; }
+.topbar h1 { font-size: 26px; font-weight: 800; color: #1F3A5F; flex: 1; }
+.topbar h2 { font-size: 20px; font-weight: 800; color: #1F3A5F; flex: 1; text-align: center; }
+.link { min-height: 44px; min-width: 44px; padding: 0 10px; font-size: 17px; font-weight: 700; color: #1F3A5F; text-decoration: underline; text-underline-offset: 3px; }
+.link.danger { color: #B3261E; }
+.spacer { min-width: 44px; }
+
+/* ---- Home: search + list ---- */
+.search-wrap { position: relative; padding: 4px 16px 8px; }
+.search {
+  width: 100%; height: 50px; border-radius: 14px; border: 2px solid #C9D2DE; background: #fff;
+  padding: 0 48px 0 14px; font-size: 17px; color: #2B2B2B;
+}
+.search:focus { border-color: #1F3A5F; outline: none; }
+.search::placeholder { color: #6B6B6B; }
+.search-clear { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); min-width: 44px; min-height: 44px; font-size: 20px; font-weight: 800; color: #555; }
+.list { list-style: none; padding: 0 16px 200px; }
+.list li { border-bottom: 1px solid #E6E9EE; }
+.row-btn { width: 100%; min-height: 64px; display: flex; align-items: center; gap: 12px; padding: 10px 4px; text-align: left; }
+.row-main { flex: 1; min-width: 0; }
+.row-store, .row-date { display: block; }
+.row-store { font-size: 17px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.row-date { font-size: 16px; color: #5A5A5A; margin-top: 2px; }
+.money { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.row-total { font-size: 18px; font-weight: 800; }
+.empty { padding: 36px 24px; font-size: 18px; line-height: 1.45; text-align: center; color: #4A4A4A; }
+.count { padding: 2px 20px 6px; font-size: 16px; color: #5A5A5A; }
+
+/* ---- Sticky Scan bar at the bottom of Home ---- */
+.scanbar {
+  position: fixed; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,.97); border-top: 1px solid #E6E9EE;
+  padding: 10px 16px calc(12px + env(safe-area-inset-bottom));
+}
+.scanbar-inner { max-width: 608px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
+.tip { font-size: 16px; color: #4A4A4A; text-align: center; }
+.btn-big { width: 100%; min-height: 58px; border-radius: 16px; background: #1F3A5F; color: #fff; font-size: 19px; font-weight: 800; }
+.btn-big:active { background: #162B47; }
+.btn-big:disabled { background: #C9D2DE; color: #5A5A5A; cursor: default; }
+.footer .btn-danger { width: 40%; min-height: 58px; color: #B3261E !important; border-color: #B3261E !important; }
+.btn-small { width: 100%; min-height: 46px; border-radius: 14px; border: 2px solid #1F3A5F; color: #1F3A5F; background: #fff; font-size: 17px; font-weight: 700; }
+
+/* ---- Reading (OCR progress) ---- */
+.reading { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 18px; padding: 24px; text-align: center; }
+.reading p { font-size: 18px; font-weight: 700; }
+.reading .sub { font-size: 16px; font-weight: 400; color: #5A5A5A; }
+.bar { height: 14px; border-radius: 7px; background: #E6E9EE; overflow: hidden; }
+.bar-fill { height: 100%; width: 0; background: #1F3A5F; transition: width .2s; }
+
+/* ---- Review / detail ---- */
+.form { padding: 4px 16px calc(130px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 14px; }
+.thumb-btn { align-self: center; border-radius: 12px; overflow: hidden; border: 1px solid #E6E9EE; min-height: 44px; }
+.thumb-btn img { display: block; max-height: 160px; max-width: 100%; }
+.msg { background: #EEF3F8; border: 2px solid #B9CBDD; border-radius: 14px; padding: 12px 14px; font-size: 16px; color: #2A3E52; line-height: 1.35; }
+.field label, .group-label { display: flex; justify-content: space-between; align-items: baseline; font-size: 16px; font-weight: 700; color: #3A3A3A; margin-bottom: 6px; }
+.inp {
+  width: 100%; min-height: 48px; border-radius: 12px; border: 2px solid #C9D2DE; background: #fff;
+  padding: 8px 12px; font-size: 17px; color: #2B2B2B; font-family: inherit;
+}
+.inp:focus { border-color: #1F3A5F; outline: none; }
+.inp.num { text-align: right; font-variant-numeric: tabular-nums; }
+/* Amber "Check this" (same amber as Quick Pot & Fry's note box). */
+.check { display: none; font-size: 16px; font-weight: 800; color: #5C4400; background: #FFF3C9; border: 2px solid #E8C25A; border-radius: 10px; padding: 0 8px; }
+.flag .check { display: inline-block; }
+.flag .inp, .inp.flag { border-color: #E8C25A; border-width: 3px; background: #FFFBEA; }
+.warn { background: #FFF3C9; border: 2px solid #E8C25A; border-radius: 14px; padding: 12px 14px; font-size: 16px; font-weight: 700; color: #5C4400; line-height: 1.35; }
+.items { display: flex; flex-direction: column; gap: 8px; }
+.item { display: flex; gap: 8px; align-items: center; }
+.item .name { flex: 1; min-width: 0; }
+.item .price { width: 96px; flex-shrink: 0; }
+.del { min-width: 44px; min-height: 44px; border-radius: 12px; font-size: 22px; font-weight: 800; color: #B3261E; }
+.add { align-self: flex-start; min-height: 44px; padding: 0 6px; font-size: 17px; font-weight: 700; color: #1F3A5F; text-decoration: underline; text-underline-offset: 3px; }
+.footer { position: fixed; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,.97); border-top: 1px solid #E6E9EE; padding: 10px 16px calc(12px + env(safe-area-inset-bottom)); }
+.footer > div { max-width: 608px; margin: 0 auto; display: flex; gap: 10px; }
+
+/* Read-only detail */
+.ro { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #E6E9EE; font-size: 17px; }
+.ro .k { color: #5A5A5A; }
+.ro .v { font-weight: 700; text-align: right; }
+.ro-items { list-style: none; }
+.ro-items li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid #F0F2F5; font-size: 17px; }
+
+/* Export */
+.export { padding: 12px 16px; display: flex; flex-direction: column; gap: 14px; }
+.soon { font-size: 16px; color: #5A5A5A; text-align: center; margin-top: -6px; }
+.note-line { font-size: 17px; line-height: 1.45; color: #3A3A3A; }
+
+/* Full-size photo viewer */
+.viewer { position: fixed; inset: 0; background: #111; z-index: 10; display: flex; flex-direction: column; padding-top: env(safe-area-inset-top); }
+.viewer img { flex: 1; min-height: 0; width: 100%; object-fit: contain; }
+.viewer-close { align-self: flex-end; min-height: 48px; padding: 0 18px; color: #fff; font-size: 18px; font-weight: 800; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(150px + env(safe-area-inset-bottom)); background: #1F3A5F; color: #fff; padding: 12px 18px; border-radius: 14px; font-size: 16px; font-weight: 700; z-index: 5; }
